@@ -1,3 +1,7 @@
+# IDE
+.idea
+
+# Repos
 repo_name/
 simple_repo/
 advance_repo/
