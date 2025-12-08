@@ -1,11 +1,17 @@
 {
   "repo_name": "repo_name",
   "project_name": "project_name",
-  "project_structure": ["advance", "simple"],
-  "deps_manager": ["pip", "uv"],
+  "project_description": "A short description of the project.",
   "author_name": "Your name (or your organization/company/team)",
-  "description": "A short description of the project.",
+  "project_structure": ["advance", "simple"],
+  "package_manager": ["pip", "uv"],
   "python_version": "3.12",
+  "use_databricks": ["yes", "no"],
+  "use_airflow": ["yes", "no"],
+  "use_terraform": ["yes", "no"],
+  "use_mlflow": ["yes", "no"],
+  "enable_drift_monitoring": ["yes", "no"],
+  "enable_etl": ["yes", "no"],
   "open_source_license": ["No license file", "MIT", "BSD-3-Clause"],
   "_copy_without_render": [
     "**/workflows/*"

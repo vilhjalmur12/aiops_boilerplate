@@ -47,3 +47,18 @@ def test_wrong_config4(tmpdir):
             no_input=True,
             output_dir=str(tmpdir),
         )
+
+
+def test_minimal_config(tmpdir):
+    """Test that template generation works with all optional components disabled."""
+    result = cookiecutter(
+        template=".",
+        config_file="configs/minimal_config.yaml",
+        overwrite_if_exists=True,
+        no_input=True,
+        output_dir=str(tmpdir),
+    )
+    assert result is not None
+    # Verify the generated directory exists
+    import os
+    assert os.path.exists(result)
