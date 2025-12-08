@@ -5,8 +5,8 @@
 # ---------------------------------------------
 
 # Temp directory for rendering the template
-BUILD_DIR := .build
-RENDERED_PROJECT := $(BUILD_DIR)/rendered
+BUILD_DIR := build
+RENDERED_PROJECT := $(BUILD_DIR)/repo_name
 
 # ---------------------------------------------
 # Display project structure (your existing rule)
@@ -23,6 +23,14 @@ structure:
 	| tree --fromfile
 
 # ---------------------------------------------
+# Main Utilities
+# ---------------------------------------------
+
+# Run tests
+test:
+	pytest -q tests/
+
+# ---------------------------------------------
 # Template Utilities
 # ---------------------------------------------
 
@@ -35,7 +43,10 @@ render:
 
 # Validate template using the repository script (ci/validate_template.py)
 validate:
-	python ci/validate_template.py
+	python tests/ci/validate_template.py
+
+validate-ci:
+	act -j validate-template
 
 # Lint template repo (YAML, Python in ci/, cookiecutter JSON)
 lint:
@@ -50,7 +61,7 @@ lint:
 # - Runs pytest (in the generated repo)
 # - Avoids mixing template dev env with generated env
 
-test: render
+test-template: render
 	@echo "Running tests inside rendered project..."
 	cd $(RENDERED_PROJECT) && pip install -r requirements.txt
 	cd $(RENDERED_PROJECT) && pytest -q
