@@ -16,8 +16,7 @@ except ImportError:
 project_name = "{{cookiecutter.project_name}}"
 python_version = "{{cookiecutter.python_version}}"
 project_structure = "{{cookiecutter.project_structure}}"
-# Support both old 'deps_manager' and new 'package_manager' for backward compatibility
-package_manager = "{{cookiecutter.package_manager if cookiecutter.package_manager else cookiecutter.deps_manager}}"
+package_manager = "{{cookiecutter.package_manager}}"
 use_databricks = "{{cookiecutter.use_databricks}}"
 use_airflow = "{{cookiecutter.use_airflow}}"
 use_terraform = "{{cookiecutter.use_terraform}}"

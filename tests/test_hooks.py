@@ -1,4 +1,5 @@
 import pytest
+import os
 from cookiecutter.exceptions import FailedHookException
 from cookiecutter.main import cookiecutter
 
@@ -60,5 +61,4 @@ def test_minimal_config(tmpdir):
     )
     assert result is not None
     # Verify the generated directory exists
-    import os
     assert os.path.exists(result)
