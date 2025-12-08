@@ -22,6 +22,20 @@ The template is intentionally **minimal**, **environment-agnostic**, and **flexi
 
 ---
 
+## Development
+
+### CI
+
+The project uses GitHub Actions for CI, i would suggest having **act** installed locally to run the workflows before pushing.
+
+Optional CI test runs:
+
+```bash
+
+```
+
+
+---
 ## Features
 
 #### End-to-End Lifecycle Out of the Box
