@@ -11,3 +11,7 @@ advance_pip_repo/
 advance_uv_repo/
 __pycache__/
 *.bkp
+
+# Builds
+.build/
+build/

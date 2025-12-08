@@ -1,97 +1,267 @@
-# AIOps Boilerplate
+# ML Boilerplate
+
+*A modern, Databricks-friendly, end-to-end machine learning project template.*
 
 ![Python Version](https://img.shields.io/badge/python-3.12%2B-blue)
-[![Release](https://img.shields.io/github/v/release/vilhjalmur12/aiops_boilerplate)](https://github.com/vilhjalmur12/aiops_boilerplate/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Made with Cookiecutter](https://img.shields.io/badge/cookiecutter-template-blue.svg)](https://cookiecutter.readthedocs.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![pre-commit](https://results.pre-commit.ci/badge/github/vilhjalmur12/aiops_boilerplate/main.svg)](https://results.pre-commit.ci/latest/github/vilhjalmur12/aiops_boilerplate/main)
-[![codecov](https://codecov.io/gh/vilhjalmur12/aiops_boilerplate/branch/main/graph/badge.svg)](https://codecov.io/gh/vilhjalmur12/aiops_boilerplate)
 
-A **full-stack AI/ML Ops boilerplate ecosystem** designed to accelerate development of AI/ML projects and services.
-This template allows you to generate a **monorepo skeleton** and add **modular service templates** on the fly — covering the entire AI stack, from data services to ML pipelines and LLMOps.
+This repository provides a **single, unified boilerplate** for building production-grade ML pipelines with:
 
-## 📖 Description
+* **ETL**
+* **Data Quality**
+* **Training (MLflow)**
+* **Inference (FastAPI + batch)**
+* **Drift Monitoring (Evidently)**
+* **Airflow orchestration**
+* **Databricks compatibility**
+* **Optional Terraform provisioning**
 
-The AIOps Boilerplate provides a consistent way to start, extend, and manage AI/ML projects.
-It is designed to:
+The template is intentionally **minimal**, **environment-agnostic**, and **flexible** — suitable for local development, Airflow pipelines, Databricks jobs, or cloud deployment.
 
-* Speed up project setup with ready-made templates for different AI/ML use cases.
-* Ensure reproducibility and governance with built-in versioning and CI/CD.
-* Support both open-source and cloud-native toolchains.
-* Serve as a foundation for experimentation and production deployments across the AI stack.
+---
 
-## 🧭 Positioning
+## Development
 
-Unlike single-purpose templates or monolithic ML frameworks, the AIOps Boilerplate offers:
+### CI
 
-* **Full-stack coverage**: from data infrastructure and orchestration to ML pipelines, LLMOps, governance, and deployment.
-* **Composable templates**: add services on the fly, tailored for specific AI/ML use cases.
-* **OSS + Cloud parity**: runs locally with open-source services and scales seamlessly to cloud equivalents.
-* **Maintainability built-in**: semantic versioning, changelogs, and upgrade path via Cruft/Copier.
+The project uses GitHub Actions for CI, i would suggest having **act** installed locally to run the workflows before pushing.
 
-This makes the project not just a starting point, but an evolving **ecosystem** for AI and ML operations.
+Optional CI test runs:
 
-## ✨ Features
+```bash
 
-* **Cookiecutter-powered** project generation.
-* **Monorepo skeleton** with CI/CD, Docker/K8s, and observability.
-* **13 service templates** for common AI/ML use cases:
+```
 
-  * MLOps pipeline
-  * LLMOps
-  * Forecasting
-  * Data stacks (initial & extended)
-  * Evaluation & testing
-  * Governance
-  * Streaming analytics
-  * Simulation & synthetic data
-  * Deployment-first microservices
-  * Pre-analysis/EDA
-  * Recommenders
-* **OSS + cloud ready**: works with Postgres, Spark, Kafka, MinIO, Qdrant, and cloud equivalents.
-* **Versioned and maintainable**: per-template semantic versioning, changelogs, and upgrade path via [Cruft](https://cruft.github.io/cruft/) or [Copier](https://copier.readthedocs.io).
 
-## 🚀 Quickstart
+---
+## Features
 
-Generate the monorepo:
+#### End-to-End Lifecycle Out of the Box
+
+The boilerplate supports the full ML workflow:
+
+```
+Raw Data 
+   ↓
+ETL (Ingest → Transform → Materialize)
+   ↓
+Data Quality (Great Expectations optional)
+   ↓
+Training (MLflow)
+   ↓
+Model Artifact
+   ↓
+Online Inference (FastAPI) + Batch Inference
+   ↓
+Monitoring & Drift (Evidently)
+```
+
+---
+
+#### Databricks-Friendly, Not Databricks-Required
+
+Run locally or on Databricks with no code changes.
+
+Includes:
+
+* Spark session builder (local + Databricks)
+* Delta Lake utilities
+* Databricks Job definitions
+* Optional Databricks Asset Bundle scaffold
+* Project-scoped Terraform examples
+
+---
+
+#### Airflow-Ready
+
+Ships with:
+
+* `etl_dag.py`
+* `train_model_dag.py`
+* `drift_monitoring_dag.py`
+
+Each DAG calls the modular pipelines directly.
+
+---
+
+#### Strong Observability Patterns
+
+* Centralized logging utilities
+* Metrics middleware for the FastAPI service
+* Evidently drift reports (HTML & JSON)
+* Optional MLflow tracking of drift + metrics
+
+---
+
+#### Clean, Modular Code Structure
+
+Everything is neatly separated:
+
+```
+src/
+  project/
+    config/        # YAML-driven configuration loader
+    io/            # Spark/Delta + datasource utilities
+    etl/           # Ingest, transform, materialize
+    quality/       # Data validation (start with GE stubs)
+    training/      # MLflow training pipeline
+    inference/     # FastAPI + batch inference
+    drift/         # Evidently drift pipelines
+    evaluation/    # Model evaluation utilities
+    monitoring/    # Logging + metrics helpers
+    cli.py         # Optional unified CLI
+```
+
+---
+
+#### Developer Experience Built-In
+
+* `pip` or `uv` support
+* Dockerfiles for API + training images
+* `tasks_pip.py` and `tasks_uv.py` for easy execution
+* Pre-commit hooks
+* Initial tests that validate pipelines + structure
+* MkDocs documentation scaffolding
+
+---
+
+## Getting Started
+
+#### 1. Generate a project
 
 ```bash
 cookiecutter gh:vilhjalmur12/aiops_boilerplate
 ```
 
-Add a service:
+Choose your:
+
+* Project name
+* Package name
+* Whether to enable Databricks, Airflow, Terraform, etc.
+
+---
+
+#### 2. Install dependencies
 
 ```bash
-./scripts/new_service.sh llmops service_slug=docs-rag svc_port=8092
+pip install -r requirements.txt
+# or
+pip install -e .
 ```
 
-Run locally:
+---
+
+#### 3. Run pipelines
+
+#### ETL
 
 ```bash
-docker-compose up
+python -m <project>.etl.pipeline
 ```
 
-## 📚 Documentation
+#### Data Quality
 
-* [Project Overview](./docs/project_overview.md)
-* [Epics and Roadmap](./docs/epics/)
-* [Implementation Details](./docs/implementation/)
+```bash
+python -m <project>.quality.data_quality
+```
 
-## 📜 License
+#### Training
+
+```bash
+python -m <project>.training.train
+```
+
+#### Drift Monitoring
+
+```bash
+python -m <project>.drift.pipeline
+```
+
+---
+
+#### 4. Start the inference API
+
+```bash
+uvicorn <project>.inference.api:app --reload
+```
+
+Visit:
+
+* `http://localhost:8000/health`
+* `http://localhost:8000/predict`
+* `http://localhost:8000/docs`
+* `http://localhost:8000/metrics`
+
+---
+
+## Project Structure (Generated Repo)
+
+See `project_overview.md` for the full tree, but at a glance:
+
+```
+configs/          # YAML configs for Spark, MLflow, Airflow, Databricks, etc.
+src/<project>/    # ML pipelines + utilities
+airflow/          # DAGs
+databricks/       # Job definitions + optional bundle
+infra/terraform/  # Minimal Databricks IaC scaffold
+dockerfiles/      # API + training images
+docs/             # MkDocs documentation
+tests/            # Unit tests across all modules
+```
+
+---
+
+## Documentation
+
+Once generated:
+
+```bash
+mkdocs serve
+```
+
+Documentation includes:
+
+* Architecture overview
+* How to run ETL, quality, training, inference, drift
+* Databricks setup
+* Airflow setup
+* Data quality & Evidently examples
+
+---
+
+## Tooling & Integrations
+
+| Area                | Tech                       |
+| ------------------- | -------------------------- |
+| Compute             | Spark (local + Databricks) |
+| Storage Format      | Delta Lake                 |
+| Orchestration       | Airflow (optional)         |
+| Experiment Tracking | MLflow                     |
+| Drift Detection     | Evidently                  |
+| API Serving         | FastAPI                    |
+| Infrastructure      | Terraform (optional)       |
+| Containerization    | Docker                     |
+
+---
+
+## License
 
 This project is licensed under the MIT License.
-It is **forked from [SkafteNicki/mlops_template](https://github.com/SkafteNicki/mlops_template)** and builds upon that foundation.
-Please review the LICENSE file for details.
+Forked and evolved from earlier MLOps template work.
 
-## 🔗 References
+---
+
+## Contributing
+
+Contributions are welcome!
+Feel free to open issues or PRs to improve the template or add optional integrations.
+
+---
+
+## References
 
 * [SkafteNicki/mlops_template](https://github.com/SkafteNicki/mlops_template) – Original MLOps template this project builds upon.
-* [Cruft](https://cruft.github.io/cruft/) – Template evolution tool.
-* [Copier](https://copier.readthedocs.io) – Alternative tool for template updating.
-* [Cookiecutter](https://cookiecutter.readthedocs.io/) – Framework for generating project templates.
-* [Qdrant](https://qdrant.tech/) – Open source vector database.
-* [MinIO](https://min.io/) – S3-compatible object storage.
-* [Apache Spark](https://spark.apache.org/) – Distributed compute engine.
-* [Apache Kafka](https://kafka.apache.org/) – Streaming backbone.
-* [MLflow](https://mlflow.org/) – Experiment tracking and model registry.
+
 
