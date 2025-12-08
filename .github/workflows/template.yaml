@@ -2,10 +2,10 @@ name: Check Template
 
 on:
   #push:
-  #  branches: [master]
+  #  branches: [dev]
   #pull_request:
-  #  branches: [master]
-  workflow_dispatch:
+  #  branches: [dev]
+  workflow_dispatch: {}
 
 jobs:
   setup:

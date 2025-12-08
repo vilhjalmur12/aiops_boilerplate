@@ -2,9 +2,10 @@ name: Run tests
 
 on:
   #push:
-  #  branches: [master]
+  #  branches: [dev]
   #pull_request:
-  #  branches: [master]
+  #  branches: [dev]
+  workflow_dispatch: {}
 
 jobs:
   template:
