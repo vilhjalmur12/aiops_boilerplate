@@ -6,6 +6,7 @@ required_directories:
   - notebooks
   - models
   - docs
+  - src/{{ cookiecutter.project_name }}/quality/expectations
 
 required_files:
   - README.md
@@ -25,4 +26,5 @@ required_files:
   - src/{{ cookiecutter.project_name }}/inference/batch.py
   - src/{{ cookiecutter.project_name }}/inference/schemas.py
   - src/{{ cookiecutter.project_name }}/inference/service.py
-
+  - src/{{ cookiecutter.project_name }}/quality/data_quality.py
+  - src/{{ cookiecutter.project_name }}/quality/visualize.py
