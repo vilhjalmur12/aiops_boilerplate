@@ -11,5 +11,6 @@ required_files:
   - README.md
   - pyproject.toml
   - requirements.txt
+  - src/{{ cookiecutter.project_name }}/config/loader.py
   - src/{{ cookiecutter.project_name }}/train.py
   - src/{{ cookiecutter.project_name }}/api.py
