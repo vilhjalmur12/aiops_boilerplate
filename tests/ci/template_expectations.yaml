@@ -16,4 +16,5 @@ required_files:
   - src/{{ cookiecutter.project_name }}/training/model.py
   - src/{{ cookiecutter.project_name }}/training/pipeline.py
   - src/{{ cookiecutter.project_name }}/training/train.py
+  - src/{{ cookiecutter.project_name }}/io/data_sources.py
 
