@@ -41,6 +41,13 @@ render:
 	cookiecutter . --no-input --output-dir $(BUILD_DIR)
 	@echo "Template rendered to: $(RENDERED_PROJECT)"
 
+# Render the cookiecutter template manually (for debugging)
+render.manual:
+	rm -rf $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)
+	cookiecutter . --output-dir $(BUILD_DIR)
+	@echo "Template rendered to: $(RENDERED_PROJECT)"
+
 # Validate template using the repository script (ci/validate_template.py)
 validate:
 	python tests/ci/validate_template.py

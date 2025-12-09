@@ -16,12 +16,24 @@ except ImportError:
 project_name = "{{cookiecutter.project_name}}"
 python_version = "{{cookiecutter.python_version}}"
 project_structure = "{{cookiecutter.project_structure}}"
-deps_manager = "{{cookiecutter.deps_manager}}"
+package_manager = "{{cookiecutter.package_manager}}"
+use_databricks = "{{cookiecutter.use_databricks}}"
+use_airflow = "{{cookiecutter.use_airflow}}"
+use_terraform = "{{cookiecutter.use_terraform}}"
+use_mlflow = "{{cookiecutter.use_mlflow}}"
+enable_drift_monitoring = "{{cookiecutter.enable_drift_monitoring}}"
+enable_etl = "{{cookiecutter.enable_etl}}"
 
 logger.info(f"Project name: {project_name}")
 logger.info(f"Python version: {python_version}")
 logger.info(f"Project structure: {project_structure}")
-logger.info(f"Dependencies manager: {deps_manager}")
+logger.info(f"Package manager: {package_manager}")
+logger.info(f"Use Databricks: {use_databricks}")
+logger.info(f"Use Airflow: {use_airflow}")
+logger.info(f"Use Terraform: {use_terraform}")
+logger.info(f"Use MLflow: {use_mlflow}")
+logger.info(f"Enable drift monitoring: {enable_drift_monitoring}")
+logger.info(f"Enable ETL: {enable_etl}")
 
 if not project_name.isidentifier() or not project_name.islower():
     raise ValueError(
@@ -58,7 +70,7 @@ if project_structure == "simple":
             shutil.rmtree(f)
 
 # Rename files and folders for the uv template
-if deps_manager == "uv":
+if package_manager == "uv":
     logger.info("Renaming files and folders for the uv template.")
     Path("requirements.txt").unlink()
     Path("requirements_dev.txt").unlink()
@@ -74,7 +86,7 @@ if deps_manager == "uv":
         Path(".devcontainer/post_create_pip.sh").unlink()
         Path(".devcontainer/post_create_uv.sh").rename(".devcontainer/post_create.sh")
 
-if deps_manager == "pip":
+if package_manager == "pip":
     logger.info("Renaming files and folders for the pip template.")
     Path("pyproject_uv.toml").unlink()
     Path("pyproject_pip.toml").rename("pyproject.toml")
@@ -87,3 +99,40 @@ if deps_manager == "pip":
         Path("dockerfiles/train_pip.dockerfile").rename("dockerfiles/train.dockerfile")
         Path(".devcontainer/post_create_uv.sh").unlink()
         Path(".devcontainer/post_create_pip.sh").rename(".devcontainer/post_create.sh")
+
+# Handle optional components - placeholder for future implementation
+# When actual Databricks/Airflow/Terraform/MLflow scaffolding is added to the template,
+# these conditionals will remove them if disabled
+logger.info("Processing optional components...")
+
+if use_databricks == "no":
+    logger.info("Databricks disabled - no files to remove (placeholder for future)")
+    # Future: Remove databricks-specific files/folders when they exist
+    # if Path("databricks").exists():
+    #     shutil.rmtree("databricks")
+
+if use_airflow == "no":
+    logger.info("Airflow disabled - no files to remove (placeholder for future)")
+    # Future: Remove airflow-specific files/folders when they exist
+    # if Path("airflow").exists():
+    #     shutil.rmtree("airflow")
+
+if use_terraform == "no":
+    logger.info("Terraform disabled - no files to remove (placeholder for future)")
+    # Future: Remove terraform-specific files/folders when they exist
+    # if Path("terraform").exists():
+    #     shutil.rmtree("terraform")
+
+if use_mlflow == "no":
+    logger.info("MLflow disabled - no files to remove (placeholder for future)")
+    # Future: Remove mlflow-specific files/folders when they exist
+
+if enable_drift_monitoring == "no":
+    logger.info("Drift monitoring disabled - no files to remove (placeholder for future)")
+    # Future: Remove drift monitoring specific files when they exist
+
+if enable_etl == "no":
+    logger.info("ETL disabled - no files to remove (placeholder for future)")
+    # Future: Remove ETL-specific files/folders when they exist
+
+logger.info("Project generation completed successfully!")

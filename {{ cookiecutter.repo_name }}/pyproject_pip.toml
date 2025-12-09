@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = {{ cookiecutter.project_name|tojson }}
 version = "0.0.1"
-description = {{ cookiecutter.description|tojson }}
+description = {{ cookiecutter.project_description|tojson }}
 authors = [
   { name = {{ cookiecutter.author_name|tojson }}, email = "your@email.com" },
 ]
