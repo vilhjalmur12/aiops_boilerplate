@@ -21,4 +21,8 @@ required_files:
   - src/{{ cookiecutter.project_name }}/etl/materialize.py
   - src/{{ cookiecutter.project_name }}/etl/pipeline.py
   - src/{{ cookiecutter.project_name }}/etl/transform.py
+  - src/{{ cookiecutter.project_name }}/inference/api.py
+  - src/{{ cookiecutter.project_name }}/inference/batch.py
+  - src/{{ cookiecutter.project_name }}/inference/schemas.py
+  - src/{{ cookiecutter.project_name }}/inference/service.py
 
