@@ -43,3 +43,6 @@ required_files:
 
   - src/{{ cookiecutter.project_name }}/evaluation/evaluation.py
 
+  - src/{{ cookiecutter.project_name }}/monitoring/logging.py
+  - src/{{ cookiecutter.project_name }}/monitoring/metrics.py
+
