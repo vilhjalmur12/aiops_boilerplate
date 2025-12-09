@@ -12,5 +12,8 @@ required_files:
   - pyproject.toml
   - requirements.txt
   - src/{{ cookiecutter.project_name }}/config/loader.py
-  - src/{{ cookiecutter.project_name }}/train.py
-  - src/{{ cookiecutter.project_name }}/api.py
+  - src/{{ cookiecutter.project_name }}/training/dataset.py
+  - src/{{ cookiecutter.project_name }}/training/model.py
+  - src/{{ cookiecutter.project_name }}/training/pipeline.py
+  - src/{{ cookiecutter.project_name }}/training/train.py
+
