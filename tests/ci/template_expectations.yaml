@@ -6,7 +6,6 @@ required_directories:
   - notebooks
   - models
   - docs
-  - src/{{ cookiecutter.project_name }}/quality/expectations
 
 required_files:
   - README.md
