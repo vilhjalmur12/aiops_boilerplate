@@ -12,19 +12,31 @@ required_files:
   - README.md
   - pyproject.toml
   - requirements.txt
+
   - src/{{ cookiecutter.project_name }}/config/loader.py
+
   - src/{{ cookiecutter.project_name }}/training/dataset.py
   - src/{{ cookiecutter.project_name }}/training/model.py
   - src/{{ cookiecutter.project_name }}/training/pipeline.py
   - src/{{ cookiecutter.project_name }}/training/train.py
+
   - src/{{ cookiecutter.project_name }}/io/data_sources.py
+
   - src/{{ cookiecutter.project_name }}/etl/ingest.py
   - src/{{ cookiecutter.project_name }}/etl/materialize.py
   - src/{{ cookiecutter.project_name }}/etl/pipeline.py
   - src/{{ cookiecutter.project_name }}/etl/transform.py
+
   - src/{{ cookiecutter.project_name }}/inference/api.py
   - src/{{ cookiecutter.project_name }}/inference/batch.py
   - src/{{ cookiecutter.project_name }}/inference/schemas.py
   - src/{{ cookiecutter.project_name }}/inference/service.py
+
   - src/{{ cookiecutter.project_name }}/quality/data_quality.py
   - src/{{ cookiecutter.project_name }}/quality/visualize.py
+  - src/{{ cookiecutter.project_name }}/quality/visualize.py
+
+  - src/{{ cookiecutter.project_name }}/drift/data_drift.py
+  - src/{{ cookiecutter.project_name }}/drift/model_drift.py
+  - src/{{ cookiecutter.project_name }}/drift/pipeline.py
+  - src/{{ cookiecutter.project_name }}/drift/reference_sets.py
