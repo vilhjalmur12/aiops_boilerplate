@@ -61,6 +61,14 @@ lint:
 	yamllint .
 	jsonlint cookiecutter.json
 
+structure.template:
+	@find . \
+	  \( -type d \( -name venv -o -name .venv -o -name __pycache__ -o -name .idea -o -name .git \) \) -prune -o \
+	  \( $(foreach d,$(EMPTY_DIRS),-path '$(d)' -o) -false \) -print -prune -o \
+	  -print \
+	| sed 's|^\./||' \
+	| tree $(BUILD_DIR)
+
 # ---------------------------------------------
 # Test generated project
 # ---------------------------------------------
