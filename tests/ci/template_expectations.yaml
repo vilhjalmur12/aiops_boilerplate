@@ -33,8 +33,6 @@ required_files:
 
   - src/{{ cookiecutter.project_name }}/quality/data_quality.py
   - src/{{ cookiecutter.project_name }}/quality/visualize.py
-  - src/{{ cookiecutter.project_name }}/quality/visualize.py
-
   - src/{{ cookiecutter.project_name }}/drift/data_drift.py
   - src/{{ cookiecutter.project_name }}/drift/model_drift.py
   - src/{{ cookiecutter.project_name }}/drift/pipeline.py
